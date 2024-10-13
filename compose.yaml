@@ -32,3 +32,4 @@ services:
         source: ./proj
         target: /code/proj
       - /etc/passwd:/etc/passwd:ro
+    working_dir: /code/proj
