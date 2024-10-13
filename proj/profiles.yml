@@ -1,0 +1,12 @@
+proj:
+  outputs:
+    dev:
+      type: postgres
+      host: dbt_db
+      dbname: postgres
+      port: 5432
+      pass: "{{ env_var('POSTGRES_PASSWORD') }}"
+      user: "{{ env_var('POSTGRES_USER') }}"
+      schema: "{{ env_var('POSTGRES_SCHEMA') }}"
+      threads: 1
+  target: dev

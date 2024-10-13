@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres
+    hostname: dbt_db
+    user: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
+    env_file:
+      - .env
+  dbt:
+    build: .
+    container_name: dbt
+    user: "${UID}:${GID}"
+    volumes:
+      - type: bind
+        source: ./proj
+        target: /code/proj
+    # docker exec -it dbt bash
+    tty: true
+    command: ['/bin/bash']
+    entrypoint: []
+    depends_on: 
+      db:
+        condition: service_healthy
+        restart: true
+    env_file:
+      - .env

@@ -1,0 +1,5 @@
+name: proj
+profile: proj
+
+model-paths: ['models']
+seed-paths: ['seeds']
