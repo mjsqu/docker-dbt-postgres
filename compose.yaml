@@ -29,4 +29,3 @@ services:
         restart: true
     env_file:
       - .env
-    working_dir: /code/proj
