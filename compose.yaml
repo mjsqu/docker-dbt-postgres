@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres
+    container_name: dbt_db
     hostname: dbt_db
     user: postgres
     healthcheck:
@@ -12,20 +13,22 @@ services:
     env_file:
       - .env
   dbt:
-    build: .
+    image: ghcr.io/dbt-labs/dbt-postgres:latest
     container_name: dbt
-    user: "${UID}:${GID}"
-    volumes:
-      - type: bind
-        source: ./proj
-        target: /code/proj
     # docker exec -it dbt bash
     tty: true
-    command: ['/bin/bash']
+    command:
+      - /bin/bash
     entrypoint: []
-    depends_on: 
+    depends_on:
       db:
         condition: service_healthy
         restart: true
     env_file:
       - .env
+    user: "${UID}:${GID}"
+    volumes:
+      - type: bind
+        source: ./proj
+        target: /code/proj
+      - /etc/passwd:/etc/passwd:ro
