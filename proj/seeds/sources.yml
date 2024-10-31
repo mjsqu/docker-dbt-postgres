@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+    - name: my_new_csv
+      database: postgres
+      schema: my_test_schema
+      tables:
+        - name: my_new_csv
