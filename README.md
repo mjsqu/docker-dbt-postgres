@@ -19,6 +19,8 @@ POSTGRES_USER=dbt_tester
 POSTGRES_PASSWORD=
 ```
 
+N.B. `POSTGRES_PASSWORD` cannot be left blank - make something up!
+
 ```shell
 docker compose up -d
 ```
