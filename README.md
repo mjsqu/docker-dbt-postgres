@@ -34,3 +34,19 @@ docker exec -it dbt bash
 ```
 
 The proj directory is bind-mounted, edit files locally and submit dbt commands within the container
+
+## Tips
+
+You can set up a keybinding for compiling macros in VSCode:
+
+```json
+// Place your key bindings in this file to override the defaults
+[{
+    "key": "ctrl+shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "dbt compile -s '${fileBasename}'\u000D" }
+}
+]
+```
+
+With a model open in your editor window, you can push Ctrl+Shift+Enter (or your choice of keybinding) to run `dbt compile -s` for that file and view the output in the terminal.
