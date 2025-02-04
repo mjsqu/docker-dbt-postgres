@@ -1,0 +1,7 @@
+"TABLE_NAME","COLUMN_NAME","DESCRIPTION"
+"pg_ts_dict","oid","ID value"
+"pg_ts_dict","dictname","Dictionary name"
+"pg_ts_dict","dictnamespace","Dictionary Namespace"
+"pg_ts_dict","dictowner","Dictionary Owner"
+"pg_ts_dict","dicttemplate","Dictionary Template"
+"pg_ts_dict","dictinitoption","Dictionary Initialisation Options"

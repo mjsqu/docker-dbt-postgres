@@ -1,0 +1,1 @@
+{{ dbtgen_markdown_file_content(ref('land_raw__pg_catalog__dbtgen_column'),'woop') | tojson(indent=2) }}
