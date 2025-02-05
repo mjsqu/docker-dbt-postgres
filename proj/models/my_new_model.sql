@@ -1,1 +1,2 @@
-{{ dbtgen_markdown_file_content(ref('land_raw__pg_catalog__dbtgen_column'),'woop') | tojson(indent=2) }}
+{%- set source_system_name = 'pg_catalog' -%}
+{{ toyaml(dbtgen_yaml(source_system_name,'models','land')) }}
