@@ -3,3 +3,4 @@ profile: proj
 
 model-paths: ['models']
 seed-paths: ['seeds']
+macro-paths: ['macros']

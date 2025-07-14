@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: my_first_model
+    tests:
+      - leading_or_trailing_spaces()
+    columns:
+      - name: gappy_text
+        tests:
+          - unique
+
+      
