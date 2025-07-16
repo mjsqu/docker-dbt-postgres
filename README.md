@@ -6,6 +6,8 @@ A repository for dbt training, development and debugging.
 
 ## Instructions
 
+This repository works really well with GitHub codespaces, or clone the repository locally:
+
 ```shell
 git clone
 cd docker-dbt-postgres
