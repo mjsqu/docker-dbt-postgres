@@ -44,8 +44,9 @@ The `proj` directory is bind-mounted, edit files locally and submit dbt commands
 To query data directly you can shell into the `dbt_db` container:
 ```shell
 docker exec -it dbt_db bash
+```
 
-the `./sql_scripts` directory is mounted into `./home` in the `dbt_db` container - add your own scripts and run, e.g.:
+The `./sql_scripts` directory is mounted into `./home` in the `dbt_db` container - add your own scripts and run, e.g.:
 
 ```shell
 postgres@dbt_db:/home/sql_scripts$ psql -U dbt_tester postgres -f samples/information_schema_query.sql
