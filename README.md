@@ -50,3 +50,13 @@ You can set up a keybinding for compiling macros in VSCode:
 ```
 
 With a model open in your editor window, you can push Ctrl+Shift+Enter (or your choice of keybinding) to run `dbt compile -s` for that file and view the output in the terminal.
+
+## Troubleshooting
+
+```
+WARN[0000] The "UID" variable is not set. Defaulting to a blank string. 
+WARN[0000] The "GID" variable is not set. Defaulting to a blank string. 
+env file /workspaces/docker-dbt-postgres/.env not found: stat /workspaces/docker-dbt-postgres/.env: no such file or directory
+```
+
+Go back and add the `.env` file and ensure it has values for UID, GID
