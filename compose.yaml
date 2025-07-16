@@ -10,8 +10,14 @@ services:
       retries: 5
       start_period: 10s
       timeout: 10s
+    volumes:
+      - type: bind
+        source: ./sql_scripts
+        target: /home/sql_scripts
+    working_dir: /home/sql_scripts
     env_file:
       - .env
+
   dbt:
     build: .
     container_name: dbt
@@ -20,7 +26,6 @@ services:
       - type: bind
         source: ./proj
         target: /code/proj
-    # docker exec -it dbt bash
     tty: true
     command: 
       - /bin/bash

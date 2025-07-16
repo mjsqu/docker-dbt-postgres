@@ -1,5 +1,9 @@
 # docker-dbt-postgres
 
+## Purpose
+
+A repository for dbt training, development and debugging.
+
 ## Instructions
 
 ```shell
@@ -33,9 +37,42 @@ Shell into the dbt container
 docker exec -it dbt bash
 ```
 
-The proj directory is bind-mounted, edit files locally and submit dbt commands within the container
+The `proj` directory is bind-mounted, edit files locally and submit dbt commands within the container
+
+## Running PostgreSQL
+
+To query data directly you can shell into the `dbt_db` container:
+```shell
+docker exec -it dbt_db bash
+
+the `./sql_scripts` directory is mounted into `./home` in the `dbt_db` container - add your own scripts and run, e.g.:
+
+```shell
+postgres@dbt_db:/home/sql_scripts$ psql -U dbt_tester postgres -f samples/information_schema_query.sql
+```
+
+Which should return:
+
+|    table_schema    |              table_name               | table_type |
+|--------------------|---------------------------------------|------------|
+| pg_catalog         | pg_statistic                          | BASE TABLE |
+| pg_catalog         | pg_type                               | BASE TABLE |
+| pg_catalog         | pg_foreign_table                      | BASE TABLE |
+| pg_catalog         | pg_authid                             | BASE TABLE |
+| pg_catalog         | pg_shadow                             | VIEW       |
+
+Alternatively, log in without `-f` to run quick queries:
+```shell
+postgres@dbt_db:/home/sql_scripts$ psql -U dbt_tester postgres
+```
 
 ## Tips
+
+### UI Tip
+
+Splitting across two terminals active in both container images can help check the results of model builds on actual data.
+
+### VSCode Keybindings
 
 You can set up a keybinding for compiling macros in VSCode:
 
