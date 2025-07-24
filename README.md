@@ -11,35 +11,49 @@ This repository works really well with GitHub codespaces, or clone the repositor
 ```shell
 git clone
 cd docker-dbt-postgres
-touch .env
-id
 ```
 
-Populate the .env file with the outputs of the id command and some settings for postgres:
+Set up a `.env` file at the root of the repository. To retrieve the values of `UID` and `GID`, run the command:
+
+```shell
+id
+```
+Sample output:
+```shell
+uid=1000(codespace) gid=1000(codespace) groups=1000(codespace)...
+```
+
+Populate the .env file with the outputs of the id command and some settings for postgres, for example:
 
 ```.env
 UID=1000
 GID=1000
 POSTGRES_SCHEMA=my_test_schema
 POSTGRES_USER=dbt_tester
-POSTGRES_PASSWORD=
+POSTGRES_PASSWORD=1fbe12f5-6bca-4269-88d6-fce348d4360e
 ```
 
-:warning: N.B. `POSTGRES_PASSWORD` cannot be left blank - make something up!
+With the `.env` file contents saved, run the following command to download container images (if required) and start up the 
 
 ```shell
 docker compose up -d
 ```
 
-Use `docker container list` to verify dbt and postgres are up.
+Tip: List active containers using this command:
 
-Shell into the dbt container
+```shell
+docker container list
+```
+
+to verify dbt and postgres (dbt_db) are up.
+
+To "shell into" the dbt container and run dbt commands:
 
 ```shell
 docker exec -it dbt bash
 ```
 
-The `proj` directory is bind-mounted, edit files locally and submit dbt commands within the container
+You can now edit the project stored in the `proj` directory and run dbt commands.
 
 ## Running PostgreSQL
 
@@ -68,6 +82,21 @@ Alternatively, log in without `-f` to run quick queries:
 ```shell
 postgres@dbt_db:/home/sql_scripts$ psql -U dbt_tester postgres
 ```
+
+## Bind mountings
+
+The following directories are mounted into each container. This means that edits within the container or outside should be synced back and forth. You can edit files locally and from a shell in the container, run commands that use those files.
+
+|local directory|container|remote directory|
+|--|--|
+|proj|dbt|/code/proj|
+|sql_scripts|/home/sql_scripts|
+
+## Sample projects
+
+The `main` branch contains a skeleton of a project with no models, macros, tests etc.
+
+Branches will be added to this repository with sample projects and tutorials.
 
 ## Tips
 
