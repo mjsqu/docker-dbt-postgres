@@ -13,17 +13,18 @@ git clone
 cd docker-dbt-postgres
 ```
 
-Set up a `.env` file at the root of the repository. To retrieve the values of `UID` and `GID`, run the command:
+Set up a `.env` file at the root of the repository. The `.env` file should contain values for `UID` and `GID` (see sample below) - these can be obtained from the `id` command:
 
 ```shell
 id
 ```
+
 Sample output:
 ```shell
 uid=1000(codespace) gid=1000(codespace) groups=1000(codespace)...
 ```
 
-Populate the .env file with the outputs of the id command and some settings for postgres, for example:
+Populate the .env file with the outputs of the `id` command and some settings for postgres, for example:
 
 ```.env
 UID=1000
