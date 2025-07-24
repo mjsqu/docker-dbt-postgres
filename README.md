@@ -24,7 +24,7 @@ Sample output:
 uid=1000(codespace) gid=1000(codespace) groups=1000(codespace)...
 ```
 
-Populate the .env file with the outputs of the `id` command and some settings for postgres, for example:
+Populate the .env file with the outputs of the `id` command and some settings for PostgreSQL, for example:
 
 ```.env
 UID=1000
@@ -34,11 +34,13 @@ POSTGRES_USER=dbt_tester
 POSTGRES_PASSWORD=1fbe12f5-6bca-4269-88d6-fce348d4360e
 ```
 
-With the `.env` file contents saved, run the following command to download container images (if required) and start up the 
+With the `.env` file contents saved, run the following command to download container images (if required), start up the database (named: dbt_db) and dbt containers.
 
 ```shell
 docker compose up -d
 ```
+
+The `dbt` container has `dbt-core` installed on it and can run dbt commands. It has a project which contains connection information allowing it to connect to the `dbt_db` container which is running a PostgreSQL database.
 
 Tip: List active containers using this command:
 
@@ -46,7 +48,7 @@ Tip: List active containers using this command:
 docker container list
 ```
 
-to verify dbt and postgres (dbt_db) are up.
+to verify dbt and PostgreSQL (dbt_db) are up.
 
 To "shell into" the dbt container and run dbt commands:
 
